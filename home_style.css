@@ -1,0 +1,758 @@
+body {
+    color: #666666;
+    background: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+h1,
+h2, 
+h3, 
+h4,
+h5, 
+h6 {
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    color: #121518;
+}
+
+a {
+    color: #454545;
+    transition: .3s;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: #aa9166;
+    outline: none;
+    text-decoration: none;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+
+/* Navigation Bar */
+.navbar {
+    background-color: #121518; /* Dark background */
+    padding: 15px 10px;
+    font-size: 16px;
+    position: sticky;
+}
+
+.navbar-brand {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aa9166 !important;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    margin-right: 20px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #aa9166;
+}
+
+.navbar-nav .btn-primary {
+    background-color: #aa9166;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.navbar-nav .btn-primary:hover {
+    background-color: #ffffff;
+    color: #aa9166;
+}
+
+/* Banner */
+.banner {
+    position: relative;
+    background: url('img/carousel-2.jpg') center center / cover no-repeat;
+    height: 60vh; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.banner h1 {
+    font-size: 60px;
+    font-family: 'EB Garamond', serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    animation-duration: 1.2s;
+    margin-top: 200px;
+    color: #ffffff;
+}
+.banner p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    animation-duration: 1.5s;
+}
+
+.banner .btn {
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.banner .btn:hover {
+    background-color: #aa9166;
+    color: #ffffff;
+}
+
+
+/*******************************/
+/******* Page Header CSS *******/
+/*******************************/
+.page-header {
+    position: relative;
+    margin-bottom: 45px;
+    padding: 90px 0;
+    text-align: center;
+    background: #aa9166;
+}
+
+.page-header h2 {
+    position: relative;
+    color: #121518;
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.page-header h2::after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    left: calc(50% - 50px);
+    bottom: 0;
+    background: #121518;
+}
+
+.page-header a {
+    position: relative;
+    padding: 0 12px;
+    font-size: 22px;
+    color: #121518;
+}
+
+.page-header a:hover {
+    color: #ffffff;
+}
+
+.page-header a::after {
+    position: absolute;
+    content: "/";
+    width: 8px;
+    height: 8px;
+    top: -2px;
+    right: -7px;
+    text-align: center;
+    color: #121518;
+}
+
+.page-header a:last-child::after {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .page-header h2 {
+        font-size: 35px;
+    }
+    
+    .page-header a {
+        font-size: 18px;
+    }
+}
+
+
+/*******************************/
+/******* Section Header ********/
+/*******************************/
+.section-header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-header h2 {
+    margin: 0;
+    position: relative;
+    font-size: 50px;
+    font-weight: 700;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.section-header h2::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 7px;
+    left: 0;
+    top: 21px;
+    background: transparent;
+    border-top: 1px solid #aa9166;
+    border-bottom: 1px solid #aa9166;
+    z-index: -1;
+}
+
+.section-header h2::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 7px;
+    left: 0;
+    bottom: 20px;
+    background: transparent;
+    border-top: 1px solid #aa9166;
+    border-bottom: 1px solid #aa9166;
+    z-index: -1;
+}
+
+@media (max-width: 767.98px) {
+    .section-header h2 {
+        font-size: 30px;
+    }
+}
+
+/*******************************/
+/******** Top Feature CSS ******/
+/*******************************/
+.feature-top {
+    position: relative;
+    background: #121518;
+    margin-bottom: 45px;
+}
+
+.feature-top .col-md-3 {
+    border-right: 1px solid rgba(255, 255, 255, .1);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+@media (max-width: 575.98px) {
+    .feature-top .col-md-3:nth-child(1n) {
+        border-right: none;
+    }
+    
+    .feature-top .col-md-3:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .feature-top .col-md-3:nth-child(2n) {
+        border-right: none;
+    }
+    
+    .feature-top .col-md-3:nth-child(3n),
+    .feature-top .col-md-3:nth-child(4n) {
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .feature-top .col-md-3 {
+        border-bottom: none;
+    }
+    
+    .feature-top .col-md-3:nth-child(4n) {
+        border-right: none;
+    }
+}
+
+.feature-top .feature-item {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.feature-top .feature-item i {
+    color: #aa9166;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.feature-top .feature-item h3 {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.feature-top .feature-item p {
+    color: #999999;
+    margin: 0;
+    font-size: 18px;
+}
+
+
+/*******************************/
+/********** About CSS **********/
+/*******************************/
+.about {
+    position: relative;
+    width: 100%;
+    padding: 45px 0;
+}
+
+.about .section-header {
+    margin-bottom: 30px;
+}
+
+.about .about-img {
+    position: relative;
+    height: 100%;
+    padding: 10px;
+    background: #121518;
+}
+
+.about .about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about .about-text p {
+    font-size: 16px;
+}
+
+.about .about-text a.btn {
+    position: relative;
+    margin-top: 15px;
+    padding: 15px 35px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aa9166;
+    border: 2px solid #aa9166;
+    border-radius: 0;
+    background: #121518;
+    transition: .3s;
+}
+
+.about .about-text a.btn:hover {
+    color: #121518;
+    background: #aa9166;
+}
+
+@media (max-width: 767.98px) {
+    .about .about-img {
+        margin-bottom: 30px;
+        height: auto;
+    }
+}
+
+
+/*******************************/
+/********* Service CSS *********/
+/*******************************/
+.service {
+    position: relative;
+    width: 100%;
+    padding: 45px 0 15px 0;
+}
+
+.service .service-item {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    background: #121518;
+    margin-bottom: 30px;
+}
+
+.service .service-icon {
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+}
+
+.service .service-icon i {
+    width: 100px;
+    height: 100px;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 60px;
+    color: #aa9166;
+    background: #121518;
+    transition: .5s;
+}
+
+.service .service-item:hover .service-icon i {
+    margin-top: -15px;
+}
+
+.service .service-item h3 {
+    margin: 0;
+    padding: 25px 15px 15px 15px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #aa9166;
+}
+
+.service .service-item p {
+    margin: 0;
+    color: #999999;
+    padding: 0 25px 25px 25px;
+    font-size: 18px;
+}
+
+.service .service-item a.btn {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aa9166;
+    border: 2px solid #aa9166;
+    border-radius: 0;
+    background: #121518;
+    transition: .3s;
+}
+
+.service .service-item:hover a.btn {
+    color: #121518;
+    background: #aa9166;
+}
+
+
+
+
+/*******************************/
+/*********** Team CSS **********/
+/*******************************/
+.team {
+    position: relative;
+    width: 100%;
+    padding: 45px 0 15px 0;
+}
+
+.team .team-item {
+    margin-bottom: 30px;
+}
+
+.team .team-img {
+    position: relative;
+}
+
+.team .team-img img {
+    width: 100%;
+}
+
+.team .team-text {
+    position: relative;
+    padding: 50px 15px 30px 15px;
+    text-align: center;
+    background: #121518;
+}
+
+.team .team-text h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #aa9166;
+}
+
+.team .team-text p {
+    margin: 0;
+    color: #999999;
+}
+
+.team .team-social {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: 50px;
+    top: -25px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #aa9166;
+    font-size: 0;
+    transition: .5s;
+}
+
+.team .team-item:hover .team-social {
+    width: 100%;
+    left: 0;
+}
+
+.team .team-social a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 18px;
+    text-align: center;
+    color: #121518;
+    transition: .3s;
+}
+
+.team .team-social a:last-child {
+    margin-right: 0;
+}
+
+.team .team-social a:hover {
+    color: #ffffff;
+}
+
+
+/*******************************/
+/*********** FAQs CSS **********/
+/*******************************/
+.faqs {
+    position: relative;
+    width: 100%;
+    padding: 45px 0;
+}
+
+.faqs .faqs-img {
+    position: relative;
+    height: 100%;
+    padding: 10px;
+    background: #121518;
+}
+
+.faqs .faqs-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media(max-width: 767.98px) {
+    .faqs .faqs-img {
+        margin-bottom: 30px;
+        height: auto;
+    }
+}
+
+.faqs .card {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    border: none;
+    border-radius: 0;
+    border-top: 1px solid #aa9166;
+}
+
+.faqs .card:last-child {
+    margin-bottom: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #aa9166;
+}
+
+.faqs .card-header {
+    padding: 0;
+    border: none;
+    background: #ffffff;
+}
+
+.faqs .card-header a {
+    display: block;
+    width: 100%;
+    color: #121518;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.faqs .card-header a span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    text-align: center;
+    background: #121518;
+    color: #aa9166;
+    font-weight: 700;
+}
+
+.faqs .card-header [data-toggle="collapse"]:after {
+    font-family: 'font Awesome 5 Free';
+    content: "\f067";
+    float: right;
+    color: #121518;
+    font-size: 12px;
+    font-weight: 900;
+    transition: .3s;
+}
+
+.faqs .card-header [data-toggle="collapse"][aria-expanded="true"]:after {
+    font-family: 'font Awesome 5 Free';
+    content: "\f068";
+    float: right;
+    color: #121518;
+    font-size: 12px;
+    font-weight: 900;
+    transition: .3s;
+}
+
+.faqs .card-body {
+    padding: 15px 0 0 0;
+    font-size: 16px;
+    border: none;
+    background: #ffffff;
+}
+
+.faqs a.btn {
+    position: relative;
+    margin-top: 15px;
+    padding: 15px 35px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aa9166;
+    border: 2px solid #aa9166;
+    border-radius: 0;
+    background: #121518;
+    transition: .3s;
+}
+
+.faqs a.btn:hover {
+    color: #121518;
+    background: #aa9166;
+}
+.footer{
+    background-color: #121518;
+    color: white;
+}
+.row h3{}
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        overflow-x: hidden;
+    }
+    
+    .chat-toggle-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    
+    .chat-container {
+        width: 100%;
+        max-width: 600px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        position: fixed;
+        bottom: 100px;  /* Adjust this value based on footer size */
+        right: 20px;
+        display: none;
+        z-index: 1000;
+        max-height: 70vh; /* Set a maximum height for the chat container */
+        height: auto;
+        overflow: hidden;
+    }
+    
+    .chat-header {
+        background: #4CAF50;
+        color: #fff;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .chat-messages {
+        height: 100%;
+        max-height: 300px; /* Adjust this height to control the chat window's scrollable area */
+        overflow-y: auto;
+        padding: 15px;
+        background: #f9f9f9;
+    }
+    
+    .chat-messages p {
+        margin: 10px 0;
+    }
+    
+    .user-message {
+        text-align: right;
+        color: #333;
+    }
+    
+    .bot-message {
+        text-align: left;
+        color: #4CAF50;
+    }
+    
+    .chat-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+        padding: 10px;
+    }
+    
+    .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+    
+    .chat-input button {
+        background: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+    
+    .close-chat-btn {
+        background: #FF5733;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    
+    /* Ensure footer is at the bottom */
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+    

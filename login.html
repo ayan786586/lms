@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Login / Register with OTP</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #121518, #1e252b);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-register-container {
+            width: 100%;
+            max-width: 600px;
+            background: #1e252b;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background: #121518;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tab-button.active {
+            background: #aa9166;
+            color: #121518;
+        }
+
+        .form-wrapper {
+            padding: 30px;
+            background: #1e252b;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #444a50;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #2c353c;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        form input:focus, form select:focus {
+            border-color: #aa9166;
+        }
+
+        form button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            background: #aa9166;
+            color: #121518;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        form button:hover {
+            background: #8f7a57;
+        }
+
+        .info-box {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+
+        .info-box a {
+            color: #aa9166;
+            text-decoration: none;
+        }
+
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+
+        .otp-field {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .otp-field input {
+            width: 60px;
+            margin: 0 5px;
+            text-align: center;
+            font-size: 18px;
+            background: #2c353c;
+        }
+
+        .divider {
+            height: 1px;
+            background: #444a50;
+            margin: 20px 0;
+        }
+    </style>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="login-register-container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showForm('login')">Login</button>
+            <button class="tab-button" onclick="showForm('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="form-wrapper">
+            <h2>Welcome Back</h2>
+            <form id="loginForm">
+                <input type="text" id="loginPhoneNumber" placeholder="Phone Number" required>
+                <button type="button" onclick="sendOtp('login')">Send OTP</button>
+                <div class="otp-field" id="otpFieldLogin" style="display: none;">
+                    <input type="text" id="otpLogin" maxlength="6" placeholder="OTP" required>
+                    <button type="button" onclick="verifyOtp('login')">Verify OTP</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-form" class="form-wrapper" style="display: none;">
+            <h2>Create an Account</h2>
+            <form id="registrationForm">
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="text" id="registerPhoneNumber" placeholder="Phone Number" required>
+                <!-- Role selection dropdown -->
+                <select id="role" required>
+                    <option value="">Select Role</option>
+                    <option value="lawyer">Lawyer</option>
+                    <option value="client">Client</option>
+                </select>
+                <button type="button" onclick="sendOtp('register')">Send OTP</button>
+                <div class="otp-field" id="otpFieldRegister" style="display: none;">
+                    <input type="text" id="otpRegister" maxlength="6" placeholder="OTP" required>
+                    <button type="button" onclick="verifyOtp('register')">Verify OTP</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = "http://localhost:3000"; // Replace with your backend URL if hosted elsewhere
+
+        function showForm(formId) {
+            document.getElementById("login-form").style.display = formId === "login" ? "block" : "none";
+            document.getElementById("register-form").style.display = formId === "register" ? "block" : "none";
+            const tabButtons = document.querySelectorAll(".tab-button");
+            tabButtons.forEach(button => button.classList.remove("active"));
+            document.querySelector(`.tab-button[onclick="showForm('${formId}')"]`).classList.add("active");
+        }
+
+        async function sendOtp(formType) {
+            const phoneNumber = formType === "login"
+                ? document.getElementById("loginPhoneNumber").value
+                : document.getElementById("registerPhoneNumber").value;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/send-otp`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ phoneNumber })
+                });
+
+                const data = await response.json();
+                alert(data.message || "OTP Sent");
+                document.getElementById(formType === "login" ? "otpFieldLogin" : "otpFieldRegister").style.display = "flex";
+            } catch (error) {
+                alert("Failed to send OTP");
+            }
+        }
+
+        async function verifyOtp(formType) {
+            const phoneNumber = formType === "login"
+                ? document.getElementById("loginPhoneNumber").value
+                : document.getElementById("registerPhoneNumber").value;
+            const otp = formType === "login"
+                ? document.getElementById("otpLogin").value
+                : document.getElementById("otpRegister").value;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/verify-otp`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ phoneNumber, otp })
+                });
+
+                const data = await response.json();
+                alert(data.message || "OTP Verified");
+
+                // If verified for registration, submit registration details
+                if (formType === 'register') {
+                    registerUser();
+                }
+            } catch (error) {
+                alert("Failed to verify OTP");
+            }
+        }
+
+        async function registerUser() {
+            const fullName = document.getElementById("fullName").value;
+            const phoneNumber = document.getElementById("registerPhoneNumber").value;
+            const role = document.getElementById("role").value; // Retrieve selected role
+
+            if (!role) {
+                alert("Please select a role.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ fullName, phoneNumber, role })
+                });
+
+                const data = await response.json();
+                alert(data.message || "User registered successfully!");
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to register user.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Lawyer Services</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #121518;
+            padding: 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo img {
+            height: 40px;
+        }
+        main {
+            margin-top: 80px;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #aa9166;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .service-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            background-color: #ecf0f1;
+        }
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #aa9166;
+            transition: color 0.3s ease;
+        }
+        .service-card p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .service-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #121518;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .service-card a:hover {
+            background-color: #aa9166;
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Animation for fade-in effect */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+            .services-container {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="LawRato Logo">
+        </div>
+    </div>
+</header>
+
+<main>
+    <h1>Our Legal Services</h1>
+    <div class="services-container">
+        <div class="service-card">
+            <h3>Legal Consultation</h3>
+            <p>Get expert advice on various legal matters. Whether you're a business or an individual, we offer professional consultation to guide you through complex legal processes.</p>
+            <a href="contact.html">Request Consultation</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Contract Drafting</h3>
+            <p>Our experienced lawyers will help you draft, review, and modify contracts. Ensure that your agreements are legally sound and meet all required standards.</p>
+            <a href="contact.html">Get Started</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Litigation Support</h3>
+            <p>If you're facing legal disputes, we offer litigation services to represent your interests in court, ensuring that your case is presented effectively and efficiently.</p>
+            <a href="contact.html">Schedule a Meeting</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Business Legal Services</h3>
+            <p>From company formation to compliance issues, we provide a full range of legal services for businesses of all sizes. Protect your business with legal expertise.</p>
+            <a href="contact.html">Consult Us</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Intellectual Property Rights</h3>
+            <p>Protect your ideas, inventions, trademarks, and patents. Our team ensures your intellectual property is safeguarded from unauthorized use and infringement.</p>
+            <a href="contact.html">Learn More</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Family Law</h3>
+            <p>We handle sensitive family matters such as divorce, custody, child support, and adoption. Our team provides compassionate legal support to help you navigate these issues.</p>
+            <a href="contact.html">Get Legal Help</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 LawRato | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
